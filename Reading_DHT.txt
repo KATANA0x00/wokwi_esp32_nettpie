@@ -1,0 +1,24 @@
+#include "DHT.h"
+
+//#define DHTTYPE DHT11
+#define DHTTYPE DHT22
+#define DHTPIN 26
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Hello, ESP32!");
+  dht.begin();
+}
+
+void loop() {
+  float t = dht.readTemperature();
+  float h = dht.readHumidity();
+  Serial.print("temperature : ");
+  Serial.println(t);
+  Serial.print("humidity : ");
+  Serial.println(h);
+  Serial.println();
+  delay(2000);
+}
